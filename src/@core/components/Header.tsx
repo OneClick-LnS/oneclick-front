@@ -5,20 +5,20 @@ export default function Header() {
     <>
       <header className="header-bar">
         <div className="container mx-auto flex items-center justify-between px-10 py-6 border-b-2 border-black">
-          <a>
+          <a href="/">
             <img src={logo} width={300} />
           </a>
-          <div className="flex space-x-8 text-xl">
-            <a className="text-[#000000] hover:text-[#005fa3]" href="#">
+          <div className="flex space-x-6 text-sm">
+            <a className="text-[#000000] hover:text-[#005fa3]" href="/home">
               Home
             </a>
-            <a className="text-[#000000] hover:text-[#005fa3]" href="#">
+            <a className="text-[#000000] hover:text-[#005fa3]" href="/about">
               About
             </a>
-            <a className="text-[#000000] hover:text-[#005fa3]" href="#">
+            <a className="text-[#000000] hover:text-[#005fa3]" href="/gallery">
               Gallery
             </a>
-            <a className="text-[#000000] hover:text-[#005fa3]" href="#">
+            <a className="text-[#000000] hover:text-[#005fa3]" href="mypage">
               My Page
             </a>
           </div>
