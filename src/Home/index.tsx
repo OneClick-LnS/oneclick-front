@@ -2,7 +2,7 @@ import removeImg from '@core/assets/removeBackground/remove-background-example.s
 import uploadImg from '@core/assets/removeBackground/background-upload.svg';
 import plusBtn from '@core/assets/removeBackground/plus-btn.svg';
 import { useEffect, useState } from 'react';
-import DragDrop from '@core/components/DragDrop2';
+import DragDrop from '@core/components/DragDrop';
 
 function RemoveBackground() {
   //DragDrop or 직접 버튼 눌러서 업로드 한 파일 상태 저장
@@ -45,7 +45,7 @@ function RemoveBackground() {
           </div>
 
           <div className="mt-3 flex justify-end items-stretch gap-4">
-            <div className="flex items-center gap-4 bg-blue-500 text-white font-bold py-2 px-4 rounded cursor-pointer">
+            <div className="flex items-center gap-4 bg-blue-500 text-white font-bold py-2 px-4 rounded">
               <span>file name : {file.name}</span>
             </div>
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">

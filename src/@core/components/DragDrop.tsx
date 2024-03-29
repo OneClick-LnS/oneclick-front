@@ -1,136 +1,81 @@
-import React, {
-  useState,
-  useCallback,
-  useEffect,
-  ChangeEvent,
-  useRef,
-} from 'react';
+import { ChangeEvent, useState } from 'react';
 
-interface IFileTypes {
-  id: number; // 파일들의 고유값 id
-  object: File;
+interface DragDropProps {
+  onChangeFile: (file: File | null) => void;
+  description?: string;
 }
 
-const DragDrop = (): JSX.Element => {
-  const [files, setFiles] = useState<IFileTypes[]>([]);
-  // 드래그 중일때와 아닐때의 스타일을 구분하기 위한 state 변수
-  const [isDragging, setIsDragging] = useState<boolean>(false);
+// Drag & Drop 컴포넌트 : 업로드 된 file 정보를 props로 받은 onChangeFile 함수에 전달
+const DragDrop = ({ onChangeFile }: DragDropProps) => {
+  // 사용자가 파일을 드래그 중임을 상태로 관리
+  // UI 변경을 위해 사용
+  const [dragOver, setDragOver] = useState<boolean>(false);
 
-  // 각 선택했던 파일들의 고유값 id
-  const fileId = useRef<number>(0);
-
-  // 드래그 이벤트를 감지하는 ref 참조변수 (label 태그에 들어갈 예정)
-  const dragRef = useRef<HTMLLabelElement | null>(null);
-
-  const handleDragIn = useCallback((e: DragEvent): void => {
+  // 드래그 중인 요소가 목표 지점 진입할때
+  const handleDragEnter = (e: React.DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
     e.stopPropagation();
-  }, []);
+    setDragOver(true);
+  };
 
-  const handleDragOut = useCallback((e: DragEvent): void => {
+  // 드래그 중인 요소가 목표 지점을 벗어날때
+  const handleDragLeave = (e: React.DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
     e.stopPropagation();
+    setDragOver(false);
+  };
 
-    setIsDragging(false);
-  }, []);
-
-  const handleDragOver = useCallback((e: DragEvent): void => {
+  // 드래그 중인 요소가 목표 지점에 위치할때
+  const handleDragOver = (e: React.DragEvent<HTMLLabelElement>) => {
     e.preventDefault();
     e.stopPropagation();
+  };
 
-    if (e.dataTransfer!.files) {
-      setIsDragging(true);
+  // 드래그 중인 요소가 목표 지점에서 드롭될때
+  const handleDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragOver(false);
+
+    // 드래그되는 데이터 정보와 메서드를 제공하는 dataTransfer 객체 사용
+    if (e.dataTransfer) {
+      const file = e.dataTransfer.files[0];
+      onChangeFile(file);
     }
-  }, []);
+  };
 
-  const onChangeFiles = useCallback(
-    (e: ChangeEvent<HTMLInputElement> | any): void => {
-      let selectFiles: File[] = [];
-      let tempFiles: IFileTypes[] = files;
-      // temp 변수를 이용하여 선택했던 파일들을 담습니다.
+  // Drag & Drop이 아닌 클릭 이벤트로 업로드되는 기능도 추가
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
+    onChangeFile(file);
 
-      // 드래그 했을 때와 안했을 때 가리키는 파일 배열을 다르게 해줍니다.
-      if (e.type === 'drop') {
-        // 드래그 앤 드롭 했을때
-        selectFiles = e.dataTransfer.files;
-      } else {
-        // "파일 첨부" 버튼을 눌러서 이미지를 선택했을때
-        selectFiles = e.target.files;
-      }
-
-      for (const file of selectFiles) {
-        // 스프레드 연산자를 이용하여 기존에 있던 파일들을 복사하고, 선택했던 파일들을 append 해줍니다.
-        tempFiles = [
-          ...tempFiles,
-          {
-            id: fileId.current++, // fileId의 값을 1씩 늘려주면서 각 파일의 고유값으로 사용합니다.
-            object: file, // object 객체안에 선택했던 파일들의 정보가 담겨있습니다.
-          },
-        ];
-      }
-
-      setFiles(tempFiles);
-    },
-    [files],
-  ); // 위에서 선언했던 files state 배열을 deps에 넣어줍니다.
-  const handleDrop = useCallback(
-    (e: DragEvent): void => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      onChangeFiles(e);
-      setIsDragging(false);
-    },
-    [onChangeFiles],
-  );
-
-  const initDragEvents = useCallback((): void => {
-    // 앞서 말했던 4개의 이벤트에 Listener를 등록합니다. (마운트 될때)
-
-    if (dragRef.current !== null) {
-      dragRef.current.addEventListener('dragenter', handleDragIn);
-      dragRef.current.addEventListener('dragleave', handleDragOut);
-      dragRef.current.addEventListener('dragover', handleDragOver);
-      dragRef.current.addEventListener('drop', handleDrop);
-    }
-  }, [handleDragIn, handleDragOut, handleDragOver, handleDrop]);
-
-  const resetDragEvents = useCallback((): void => {
-    // 앞서 말했던 4개의 이벤트에 Listener를 삭제합니다. (언마운트 될때)
-
-    if (dragRef.current !== null) {
-      dragRef.current.removeEventListener('dragenter', handleDragIn);
-      dragRef.current.removeEventListener('dragleave', handleDragOut);
-      dragRef.current.removeEventListener('dragover', handleDragOver);
-      dragRef.current.removeEventListener('drop', handleDrop);
-    }
-  }, [handleDragIn, handleDragOut, handleDragOver, handleDrop]);
-
-  useEffect(() => {
-    initDragEvents();
-
-    return () => resetDragEvents();
-  }, [initDragEvents, resetDragEvents]);
+    // input 요소의 값 초기화
+    //e.target.value = '';
+  };
 
   return (
-    <div className="DragDrop">
-      <input
-        type="file"
-        id="fileUpload"
-        style={{ display: 'none' }} // label을 이용하여 구현하기에 없애줌
-        multiple={true} // 파일 다중선택 허용
-      />
+    <div className="flex flex-col justify-center items-center w-full h-full absolute z-10">
       <label
-        className={isDragging ? 'DragDrop-File-Dragging' : 'DragDrop-File'}
-        // 드래그 중일때와 아닐때의 클래스 이름을 다르게 주어 스타일 차이
-
+        className={`w-full h-full flex-col gap-3 border-2 ${
+          dragOver
+            ? 'border-blue-500 bg-blue-100 opacity-50 text-blue-500 font-semibold'
+            : 'border-gray-300'
+        } rounded-md flex items-center justify-center cursor-pointer`}
         htmlFor="fileUpload"
-        ref={dragRef}
-      >
-        <div>파일 첨부</div>
-      </label>
+        // Label에 드래그 앤 드랍 이벤트 추가
+        onDragEnter={handleDragEnter}
+        onDragLeave={handleDragLeave}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+      ></label>
+      <input
+        id="fileUpload"
+        type="file"
+        className="hidden"
+        accept="image/*"
+        onChange={handleChange}
+      ></input>
     </div>
   );
 };
-
 export default DragDrop;
