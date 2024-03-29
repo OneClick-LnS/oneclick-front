@@ -1,16 +1,14 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
-// 부모 컴포넌트
 interface DragDropProps {
   onChangeFile: (file: File | null) => void;
   description?: string;
 }
 
-const DragDrop = ({
-  onChangeFile,
-  description = '파일 첨부',
-}: DragDropProps) => {
-  // 사용자가 파일을 드래드 중임을 상태로 관리 UI 변경을 위해 사용
+// Drag & Drop 컴포넌트 : 업로드 된 file 정보를 props로 받은 onChangeFile 함수에 전달
+const DragDrop = ({ onChangeFile }: DragDropProps) => {
+  // 사용자가 파일을 드래그 중임을 상태로 관리
+  // UI 변경을 위해 사용
   const [dragOver, setDragOver] = useState<boolean>(false);
 
   // 드래그 중인 요소가 목표 지점 진입할때
@@ -56,46 +54,27 @@ const DragDrop = ({
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full">
-      <div className="w-3/4">
-        <label
-          className={`w-full flex-col gap-3 h-32 border-2 ${
-            dragOver
-              ? 'border-blue-500 bg-blue-100 text-blue-500 font-semibold'
-              : 'border-gray-300'
-          } rounded-md flex items-center justify-center cursor-pointer`}
-          htmlFor="fileUpload"
-          // Label에 드래그 앤 드랍 이벤트 추가
-          onDragEnter={handleDragEnter}
-          onDragLeave={handleDragLeave}
-          onDragOver={handleDragOver}
-          onDrop={handleDrop}
-        >
-          {description}
-          <div className="w-9 h-9 pointer-events-none">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1}
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-              />
-            </svg>
-          </div>
-        </label>
-        <input
-          id="fileUpload"
-          type="file"
-          className=""
-          accept="image/*"
-          onChange={handleChange}
-        ></input>
-      </div>
+    <div className="flex flex-col justify-center items-center w-full h-full absolute z-10">
+      <label
+        className={`w-full h-full flex-col gap-3 border-2 ${
+          dragOver
+            ? 'border-blue-500 bg-blue-100 opacity-50 text-blue-500 font-semibold'
+            : 'border-gray-300'
+        } rounded-md flex items-center justify-center cursor-pointer`}
+        htmlFor="fileUpload"
+        // Label에 드래그 앤 드랍 이벤트 추가
+        onDragEnter={handleDragEnter}
+        onDragLeave={handleDragLeave}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+      ></label>
+      <input
+        id="fileUpload"
+        type="file"
+        className="hidden"
+        accept="image/*"
+        onChange={handleChange}
+      ></input>
     </div>
   );
 };
