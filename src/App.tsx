@@ -9,15 +9,17 @@ import Header from '@core/components/Header';
 function App() {
   return (
     <>
-      <Header />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/home" Component={Home} />
-          <Route path="/about" Component={About} />
-          <Route path="/gallery" Component={Gallery} />
-          <Route path="/mypage" Component={Mypage} />
-        </Routes>
-      </BrowserRouter>
+      <div className="mx-10">
+        <Header />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/home" Component={Home} />
+            <Route path="/about" Component={About} />
+            <Route path="/gallery" Component={Gallery} />
+            <Route path="/mypage" Component={Mypage} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </>
   );
 }

@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <>
       <header className="header-bar">
-        <div className="container mx-auto flex items-center justify-between px-10 py-6 border-b-2 border-black">
+        <div className="flex items-center justify-between p-6 border-b-2 border-black">
           <a href="/">
             <img src={logo} width={300} />
           </a>
