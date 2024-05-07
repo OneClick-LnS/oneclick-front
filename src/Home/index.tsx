@@ -3,6 +3,7 @@ import uploadImg from '@core/assets/removeBackground/background-upload.svg';
 import plusBtn from '@core/assets/removeBackground/plus-btn.svg';
 import { useEffect, useState } from 'react';
 import DragDrop from '@core/components/DragDrop';
+import TextInputBox from './textInputBox';
 
 function RemoveBackground() {
   //DragDrop or 직접 버튼 눌러서 업로드 한 파일 상태 저장
@@ -63,19 +64,22 @@ function RemoveBackground() {
             </button>
           </div>
           {isSubmitted && (
-            <div className="flex justify-between gap-4">
-              <div className="w-1/2 bg-white p-5 rounded-md shadow-lg">
-                <p>사진 1</p>
+            <div>
+              <div className="flex justify-between gap-4">
+                <div className="w-1/2 bg-white p-5 rounded-md shadow-lg">
+                  <p>사진 1</p>
+                </div>
+                <div className="w-1/2 bg-white p-5 rounded-md shadow-lg">
+                  <p>사진 2</p>
+                </div>
+                <div className="w-1/2 bg-white p-5 rounded-md shadow-lg">
+                  <p>사진 3</p>
+                </div>
+                <div className="w-1/2 bg-white p-5 rounded-md shadow-lg">
+                  <p>사진 4</p>
+                </div>
               </div>
-              <div className="w-1/2 bg-white p-5 rounded-md shadow-lg">
-                <p>사진 2</p>
-              </div>
-              <div className="w-1/2 bg-white p-5 rounded-md shadow-lg">
-                <p>사진 3</p>
-              </div>
-              <div className="w-1/2 bg-white p-5 rounded-md shadow-lg">
-                <p>사진 4</p>
-              </div>
+              <TextInputBox></TextInputBox>
             </div>
           )}
         </>
