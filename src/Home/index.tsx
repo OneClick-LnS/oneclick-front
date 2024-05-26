@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react';
 import removeImg from '@core/assets/removeBackground/remove-background-example.svg';
 import uploadImg from '@core/assets/removeBackground/background-upload.svg';
 import plusBtn from '@core/assets/removeBackground/plus-btn.svg';
-import { useEffect, useState } from 'react';
 import DragDrop from '@core/components/DragDrop';
 import GenerateBackground from './GenerateBackground';
 
@@ -13,7 +13,6 @@ function RemoveBackground() {
   const handleFileSelect = (file: File | null) => {
     setFile(file);
     // console.log(file);
-    setIsSubmitted(false); // 파일이 변경되면 다시 false로 설정
   };
 
   const [imageUrl, setImageUrl] = useState('');
@@ -119,6 +118,7 @@ export default function Home() {
   return (
     <>
       <RemoveBackground />
+      <div className="my-28"></div>
       <GenerateBackground />
     </>
   );
