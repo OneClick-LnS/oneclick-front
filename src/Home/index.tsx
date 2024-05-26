@@ -3,16 +3,23 @@ import uploadImg from '@core/assets/removeBackground/background-upload.svg';
 import plusBtn from '@core/assets/removeBackground/plus-btn.svg';
 import { useEffect, useState } from 'react';
 import DragDrop from '@core/components/DragDrop';
-import testImg from '@core/assets/test.png';
+import TextInputBox from './textInputBox';
 
 function RemoveBackground() {
   //DragDrop or 직접 버튼 눌러서 업로드 한 파일 상태 저장
   const [file, setFile] = useState<File | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false); // 추가된 상태
 
   // 구현할 InputDragDrop에서 파일이 선택될 때 상태를 업데이트 한다.
   const handleFileSelect = (file: File | null) => {
     setFile(file);
-    //console.log(file);
+    // console.log(file);
+    setIsSubmitted(false); // 파일이 변경되면 다시 false로 설정
+  };
+
+  // Submit 버튼 클릭 시 상태 변경
+  const handleSubmit = () => {
+    setIsSubmitted(true);
   };
 
   const [imageUrl, setImageUrl] = useState('');
@@ -69,12 +76,31 @@ function RemoveBackground() {
               <span>file name : {file.name}</span>
             </div>
             <button
+              onClick={handleSubmit}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
-              onClick={handleUpload}
             >
               Submit
             </button>
           </div>
+          {isSubmitted && (
+            <div>
+              <div className="flex justify-between gap-4">
+                <div className="w-1/2 bg-white p-5 rounded-md shadow-lg">
+                  <p>사진 1</p>
+                </div>
+                <div className="w-1/2 bg-white p-5 rounded-md shadow-lg">
+                  <p>사진 2</p>
+                </div>
+                <div className="w-1/2 bg-white p-5 rounded-md shadow-lg">
+                  <p>사진 3</p>
+                </div>
+                <div className="w-1/2 bg-white p-5 rounded-md shadow-lg">
+                  <p>사진 4</p>
+                </div>
+              </div>
+              <TextInputBox></TextInputBox>
+            </div>
+          )}
         </>
       ) : (
         <>
