@@ -1,19 +1,20 @@
 import React from 'react';
 import 'tailwindcss/tailwind.css';
+import ButtonComponent from './\bbutton'; // ./button 이라고 작성하면 에러가 난다
 
-export default function About() {
+const About: React.FC = () => {
   return (
     <div className="flex flex-col items-center p-6 text-white">
       <h1 className="text-5xl font-extrabold mb-8 animate-fade-in-down text-center text-gray-800">
-        <div>간편한 이미지 배경 생성</div>
-        <div>사진에 생명을 불어 넣어보세요!</div>
+        <div className="mt-5">간편한 이미지 배경 생성</div>
+        <div className="mt-5">사진에 생명을 불어 넣어보세요!</div>
       </h1>
-      <p className="text-xl mb-10 text-center max-w-4xl animate-fade-in-up bg-gradient-to-r from-blue-400 to-blue-600">
+      <p className="text-xl mr-10 ml-10 mb-10 text-center max-w-4xl animate-fade-in-up bg-gray-300">
         "환영합니다! 이미지 편집의 새로운 시대를 여는 ONECLICK에 오신 것을
         환영합니다. 이제 단순한 배경 제거를 넘어, 사물에 딱 맞는 맞춤형 배경을
         자동으로 생성하는 혁신적인 솔루션을 경험해보세요."
       </p>
-      <div className="bg-white bg-opacity-20 rounded-lg p-6 mb-8 animate-fade-in-left w-full max-w-4xl bg-gradient-to-r from-blue-400 to-blue-600 hover:animate-shake">
+      {/* <div className="bg-white bg-opacity-20 rounded-lg p-6 mb-8 animate-fade-in-left w-full max-w-4xl bg-gradient-to-r from-blue-400 to-blue-600 hover:animate-shake">
         <h2 className="text-4xl font-semibold mb-4">
           AI 기술을 통한 스마트한 이미지 편집
         </h2>
@@ -23,7 +24,7 @@ export default function About() {
           자동으로 생성하여, 마치 원래부터 그 자리에 있었던 것처럼 자연스럽고
           아름다운 이미지를 만들어냅니다.
         </p>
-      </div>
+      </div> */}
       <div className="bg-white bg-opacity-20 rounded-lg p-6 mb-8 animate-fade-in-right w-full max-w-4xl bg-gradient-to-r from-blue-400 to-blue-600 hover:animate-shake">
         <h2 className="text-4xl font-semibold mb-4">사용자 맞춤형 배경 생성</h2>
         <p className="text-lg">
@@ -43,9 +44,7 @@ export default function About() {
         </p>
       </div>
       <div className="bg-white bg-opacity-20 rounded-lg p-6 mb-8 animate-fade-in-right w-full max-w-4xl bg-gradient-to-r from-blue-400 to-blue-600 hover:animate-shake">
-        <h2 className="text-4xl font-semibold mb-4">
-          여러분의 시간을 절약합니다
-        </h2>
+        <h2 className="text-4xl font-semibold mb-4">누구보다 빠르게</h2>
         <p className="text-lg">
           더 이상 복잡한 이미지 편집 프로그램에 시간을 낭비하지 마세요. 우리의
           AI 솔루션이 여러분의 시간을 절약해드리며, 고품질의 이미지를 신속하게
@@ -53,15 +52,16 @@ export default function About() {
         </p>
       </div>
       <div className="bg-white bg-opacity-20 rounded-lg p-6 mb-8 animate-fade-in-left w-full max-w-4xl bg-gradient-to-r from-blue-400 to-blue-600 hover:animate-shake">
-        <h2 className="text-4xl font-semibold mb-4">
-          무한한 가능성, 다양한 활용
-        </h2>
+        <h2 className="text-4xl font-semibold mb-4">남들과는 다르게</h2>
         <p className="text-lg">
           전자상거래, 소셜 미디어, 마케팅, 광고 등 다양한 분야에서 우리의
           솔루션을 활용할 수 있습니다. 제품 사진의 품질을 높여 판매를 촉진하고,
           개인 사진을 더 멋지게 만들어보세요.
         </p>
       </div>
+      <ButtonComponent />
     </div>
   );
-}
+};
+
+export default About;
