@@ -13,7 +13,7 @@ function TextInputBox() {
   };
 
   return (
-    <div className="bg-white p-5 rounded-md shadow-lg">
+    <div className="flex gap-5 items-center py-5">
       {/* 텍스트 입력 박스 */}
       <input
         type="text"
@@ -23,14 +23,12 @@ function TextInputBox() {
         placeholder="텍스트를 입력하세요..."
       />
       {/* 입력 버튼 */}
-      <div className="flex justify-end">
-        <button
-          onClick={handleSendClick} // 입력 버튼 클릭 이벤트
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-3"
-        >
-          입력
-        </button>
-      </div>
+      <button
+        onClick={handleSendClick} // 입력 버튼 클릭 이벤트
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-20"
+      >
+        입력
+      </button>
     </div>
   );
 }
