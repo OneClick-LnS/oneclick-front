@@ -42,6 +42,7 @@ function GenerateBackground() {
   // Submit 버튼 클릭 시 상태 변경
   const handleSubmit = () => {
     setIsSubmitted(true);
+    console.log(isSubmitted);
   };
 
   return (
@@ -74,7 +75,7 @@ function GenerateBackground() {
               <span>file name : {file.name}</span>
             </div>
             <button
-              onClick={handleUpload}
+              onClick={handleSubmit}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
             >
               Submit
