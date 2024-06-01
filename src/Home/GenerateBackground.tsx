@@ -7,7 +7,7 @@ import DragDrop from '@core/components/DragDrop';
 
 function ResultImages() {
   return (
-    <>
+    <div className="flex-col h-full gap-4">
       <div className="flex justify-between gap-4 h-1/2 text-center">
         <div className="w-1/2 bg-white p-5 rounded-md shadow-lg">
           결과 사진 1
@@ -24,7 +24,7 @@ function ResultImages() {
           결과 사진 4
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
