@@ -1,6 +1,6 @@
 import React from 'react';
 import 'tailwindcss/tailwind.css';
-import ButtonComponent from './\bbutton'; // ./button 이라고 작성하면 에러가 난다
+import ButtonComponent from './button'; // ./button 이라고 작성하면 에러가 난다
 
 const About: React.FC = () => {
   return (
