@@ -9,7 +9,6 @@ import Header from '@core/components/Header';
 function InitPage() {
   return (
     <>
-      <Header />
       <div className="flex flex-col">
         <Link to="/home">Home : 이미지 바로 생성하기!</Link>
         <Link to="/about">About : 사이트 소개!</Link>
@@ -24,6 +23,7 @@ function App() {
     <>
       <div className="mx-10">
         <BrowserRouter basename="/oneclick-front">
+          <Header />
           <Routes>
             <Route path="/" Component={InitPage} />
             <Route path="/home" Component={Home} />
