@@ -19,5 +19,5 @@ const alias = [
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: { alias: alias },
-  base: '/oneclick-front/',
+  base: '/oneclick-front',
 });
