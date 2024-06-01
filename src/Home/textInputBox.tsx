@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 
 function TextInputBox() {
   const [text, setText] = useState(''); // 텍스트 입력 상태 관리
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
     setText(event.target.value); // 입력된 텍스트 상태 업데이트
   };
 
