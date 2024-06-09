@@ -23,9 +23,9 @@ export default function Header() {
             <Link className="text-[#000000] hover:text-[#005fa3]" to="/gallery">
               Gallery
             </Link>
-            <Link className="text-[#000000] hover:text-[#005fa3]" to="/mypage">
+            {/* <Link className="text-[#000000] hover:text-[#005fa3]" to="/mypage">
               My Page
-            </Link>
+            </Link> */}
           </div>
         </div>
       </header>
