@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import removeImg from '@core/assets/removeBackground/remove-background-example.svg';
 import uploadImg from '@core/assets/removeBackground/background-upload.svg';
 import plusBtn from '@core/assets/removeBackground/plus-btn.svg';
@@ -124,18 +124,18 @@ export default function Home() {
   );
 }
 
-function test() {
-  return (
-    <>
-      <div className="container flex items-stretch gap-4">
-        <div className="flex items-center gap-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
-          <img width={'15%'} src={plusBtn} />
-          <span>select another image</span>
-        </div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
-          확인
-        </button>
-      </div>
-    </>
-  );
-}
+// function test() {
+//   return (
+//     <>
+//       <div className="container flex items-stretch gap-4">
+//         <div className="flex items-center gap-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
+//           <img width={'15%'} src={plusBtn} />
+//           <span>select another image</span>
+//         </div>
+//         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer">
+//           확인
+//         </button>
+//       </div>
+//     </>
+//   );
+// }
