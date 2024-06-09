@@ -22,9 +22,9 @@ export default function Header() {
             <a className="text-[#000000] hover:text-[#005fa3]" href="/gallery">
               Gallery
             </a>
-            <a className="text-[#000000] hover:text-[#005fa3]" href="mypage">
+            {/* <a className="text-[#000000] hover:text-[#005fa3]" href="mypage">
               My Page
-            </a>
+            </a> */}
           </div>
         </div>
       </header>
